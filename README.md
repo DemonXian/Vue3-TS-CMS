@@ -1,4 +1,5 @@
 # vue3_ts_cms
+This is a CMS project of Vue3 and TypeScript 
 
 This template should help get you started developing with Vue 3 in Vite.
 
