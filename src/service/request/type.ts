@@ -23,7 +23,3 @@ export interface MLAxiosRequestConfig extends AxiosRequestConfig {
   interceptors?: MLRequestInterceptors;
   isShowLoading?: boolean;
 }
-
-export interface ILoadingInstance {
-  close: () => void;
-}

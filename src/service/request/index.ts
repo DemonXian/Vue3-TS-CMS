@@ -3,7 +3,6 @@ import type {
   MLRequestInterceptors,
   MLCreateAxiosDefaults,
   MLAxiosRequestConfig,
-  ILoadingInstance
 } from "./type";
 
 let defaultLoading: boolean;
@@ -12,7 +11,7 @@ class MLRequest {
   private instance: AxiosInstance;
   private interceptors?: MLRequestInterceptors;
   private isShowLoading: Boolean;
-  private loadingInstance!: ILoadingInstance;
+  private loadingInstance!: ReturnType<typeof ElLoading.service>;
 
   constructor(config: MLCreateAxiosDefaults) {
     // 默认显示Loading
