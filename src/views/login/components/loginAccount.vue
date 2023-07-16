@@ -1,20 +1,28 @@
 <script setup lang="ts">
 import type { ElForm } from "element-plus";
 import { rulesAccount } from "../config/loginAccountConfig";
+import localCache from "@/utils/cache";
 
 //保存账号密码
 const account = reactive({
-  name: "",
-  password: ""
+  name: localCache.getCache("name") ?? "",
+  password: localCache.getCache("password") ?? ""
 });
 
 const elFromRef = ref<InstanceType<typeof ElForm>>();
 
 //登录方法
-const loginAction = () => {
+const loginAction = (isRememberPassword: boolean) => {
   elFromRef.value?.validate((callback) => {
     if (callback) {
-      console.log("登录");
+      // 判断是否记住密码
+      if (isRememberPassword) {
+        localCache.setCache("name", account.name);
+        localCache.setCache("password", account.password);
+      } else {
+        localCache.deleteCache("name");
+        localCache.deleteCache("password");
+      }
     }
   });
 };
@@ -31,7 +39,7 @@ defineExpose({
       <ElInput v-model="account.name" autofocus></ElInput>
     </ElFormItem>
     <ElFormItem label="密码" prop="password">
-      <ElInput v-model="account.password" type="password"></ElInput>
+      <ElInput v-model="account.password" show-password></ElInput>
     </ElFormItem>
   </ElForm>
 </template>

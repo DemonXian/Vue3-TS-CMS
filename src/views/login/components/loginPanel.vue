@@ -9,7 +9,7 @@ const isRememberPassword = ref(true);
 const loginAccountRef = ref<InstanceType<typeof LoginAccount>>();
 
 const handleLoginClick = () => {
-  loginAccountRef.value?.loginAction();
+  loginAccountRef.value?.loginAction(isRememberPassword.value);
 };
 </script>
 
