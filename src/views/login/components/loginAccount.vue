@@ -2,6 +2,7 @@
 import type { ElForm } from "element-plus";
 import { rulesAccount } from "../config/loginAccountConfig";
 import localCache from "@/utils/cache";
+import { useLoginStore } from "@/stores/login/login";
 
 //保存账号密码
 const account = reactive({
@@ -10,11 +11,14 @@ const account = reactive({
 });
 
 const elFromRef = ref<InstanceType<typeof ElForm>>();
+const loginStore = useLoginStore();
 
 //登录方法
 const loginAction = (isRememberPassword: boolean) => {
   elFromRef.value?.validate((callback) => {
     if (callback) {
+      // 进行登录
+      loginStore.accountLogin(account.name, account.password);
       // 判断是否记住密码
       if (isRememberPassword) {
         localCache.setCache("name", account.name);
