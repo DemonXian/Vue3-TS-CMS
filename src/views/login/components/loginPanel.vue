@@ -5,19 +5,31 @@ import LoginPhone from "./loginPhone.vue";
 
 const isRememberPassword = ref(true);
 
-//引用LoginAccount组件
+// 引用LoginAccount组件
 const loginAccountRef = ref<InstanceType<typeof LoginAccount>>();
+// 引用 LoginPhone组件
+const loginPhoneRef = ref<InstanceType<typeof LoginPhone>>();
+
+// 选择的tab
+const chooseTab = ref("account");
 
 const handleLoginClick = () => {
-  loginAccountRef.value?.loginAction(isRememberPassword.value);
+  if (chooseTab.value === "account") {
+    // 调用LoginAccount中的登录方法
+    loginAccountRef.value?.loginAction(isRememberPassword.value);
+  } else if (chooseTab.value === "phone") {
+    // 调用LoginPhone中的登录方法
+    loginPhoneRef.value?.loginAction();
+  }
 };
 </script>
 
 <template>
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
-    <el-tabs type="border-card" class="demo-tabs" stretch>
-      <el-tab-pane>
+
+    <el-tabs type="border-card" class="demo-tabs" stretch v-model="chooseTab">
+      <el-tab-pane name="account">
         <template #label>
           <span class="custom-tabs-label">
             <el-icon><User /></el-icon>
@@ -26,16 +38,17 @@ const handleLoginClick = () => {
         </template>
         <LoginAccount ref="loginAccountRef"></LoginAccount>
       </el-tab-pane>
-      <el-tab-pane>
+      <el-tab-pane name="phone">
         <template #label>
           <span class="custom-tabs-label">
             <el-icon><Iphone /></el-icon>
             <span>手机登录</span>
           </span>
         </template>
-        <LoginPhone></LoginPhone>
+        <LoginPhone ref="loginPhoneRef"></LoginPhone>
       </el-tab-pane>
     </el-tabs>
+
     <div class="password-action">
       <el-checkbox v-model="isRememberPassword">记住密码</el-checkbox>
       <el-link type="primary" :underline="false">忘记密码</el-link>

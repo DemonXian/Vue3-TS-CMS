@@ -11,8 +11,13 @@ export const useLoginStore = defineStore("login", () => {
     console.log(`账号：${name}，密码：${password}`);
   };
 
+  const phoneLogin = (phoneNum: string, phoneCode: string) => {
+    console.log(`手机号：${phoneNum}，验证码：${phoneCode}`);
+  };
+
   return {
     ...toRefs(loginStore),
-    accountLogin
+    accountLogin,
+    phoneLogin
   };
 });

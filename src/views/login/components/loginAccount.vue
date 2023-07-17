@@ -16,6 +16,7 @@ const loginStore = useLoginStore();
 //登录方法
 const loginAction = (isRememberPassword: boolean) => {
   elFromRef.value?.validate((callback) => {
+    // 判断输入是否符合规则
     if (callback) {
       // 进行登录
       loginStore.accountLogin(account.name, account.password);
