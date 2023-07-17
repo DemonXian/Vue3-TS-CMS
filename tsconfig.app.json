@@ -19,6 +19,9 @@
         "./src/*"
       ]
     },
+    "types": [
+      "node"
+    ],
     // 更改模块解析方式
     "moduleResolution": "node"
   }

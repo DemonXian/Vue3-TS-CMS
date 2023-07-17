@@ -7,13 +7,4 @@
     "nightwatch.conf.*",
     "playwright.config.*"
   ],
-  "compilerOptions": {
-    "composite": true,
-    "module": "ESNext",
-    "types": [
-      "node"
-    ],
-    // 更改模块解析方式
-    // "moduleResolution": "node"
-  }
 }
