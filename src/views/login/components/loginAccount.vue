@@ -3,9 +3,10 @@ import type { ElForm } from "element-plus";
 import { rulesAccount } from "../config/loginAccountConfig";
 import localCache from "@/utils/cache";
 import { useLoginStore } from "@/stores/login/login";
+import type { IAccount } from '@/service/login/type';
 
 //保存账号密码
-const account = reactive({
+const account: IAccount = reactive({
   name: localCache.getCache("name") ?? "",
   password: localCache.getCache("password") ?? ""
 });
@@ -19,7 +20,7 @@ const loginAction = (isRememberPassword: boolean) => {
     // 判断输入是否符合规则
     if (callback) {
       // 进行登录
-      loginStore.accountLogin(account.name, account.password);
+      loginStore.accountLogin(account);
       // 判断是否记住密码
       if (isRememberPassword) {
         localCache.setCache("name", account.name);

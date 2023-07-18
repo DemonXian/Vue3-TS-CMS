@@ -1,9 +1,5 @@
 import axios, { type AxiosInstance } from "axios";
-import type {
-  MLRequestInterceptors,
-  MLCreateAxiosDefaults,
-  MLAxiosRequestConfig,
-} from "./type";
+import type { MLRequestInterceptors, MLCreateAxiosDefaults, MLAxiosRequestConfig } from "./type";
 
 let defaultLoading: boolean;
 
@@ -76,6 +72,7 @@ class MLRequest {
         return value.data;
       },
       (error) => {
+        this.loadingInstance.close();
         return error;
       }
     );

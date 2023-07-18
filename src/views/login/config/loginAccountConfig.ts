@@ -19,8 +19,8 @@ export const rulesAccount = {
       trigger: "blur"
     },
     {
-      pattern: /^[a-z0-9]{8,16}$/,
-      message: "密码必须为8~16位数字或者字母",
+      pattern: /^[a-z0-9]{6,16}$/,
+      message: "密码必须为6~16位数字或者字母",
       trigger: "blur"
     }
   ]
