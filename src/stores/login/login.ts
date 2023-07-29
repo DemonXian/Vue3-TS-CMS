@@ -9,45 +9,56 @@ import type { ILoginState } from "./type";
 import type { IAccount } from "@/service/login/type";
 import router from "@/router";
 
-export const useLoginStore = defineStore("login", () => {
-  const loginStore = reactive<ILoginState>({
-    token: "",
-    userInfo: {},
-    userMenus: []
-  });
+export const useLoginStore = defineStore(
+  "login",
+  () => {
+    const loginStore = reactive<ILoginState>({
+      token: "",
+      userInfo: {},
+      userMenus: []
+    });
 
-  const accountLogin = async (account: IAccount) => {
-    // 实现登录逻辑
-    const loginResult = await accountLoginRequest(account);
-    const { id, token } = loginResult.data;
+    const accountLogin = async (account: IAccount) => {
+      // 实现登录逻辑
+      const loginResult = await accountLoginRequest(account);
+      const { id, token } = loginResult.data;
 
-    // 保存token
-    loginStore.token = token;
-    localCache.setCache("token", token);
+      // 保存token
+      loginStore.token = token;
+      localCache.setCache("token", token);
 
-    //请求登录用户信息
-    const userInfoResult = await requestUserInfoById(id);
-    const userInfo = userInfoResult.data;
-    loginStore.userInfo = userInfo;
+      //请求登录用户信息
+      const userInfoResult = await requestUserInfoById(id);
+      const userInfo = userInfoResult.data;
+      loginStore.userInfo = userInfo;
 
-    localCache.setCache("userInfo", userInfo);
+      // 请求用户菜单
+      const userMenusResult = await requestUserMenusByRoleId(userInfo.role.id);
+      const userMenus = userMenusResult.data;
+      loginStore.userMenus = userMenus;
 
-    // 请求用户菜单
-    const userMenusResult = await requestUserMenusByRoleId(userInfo.role.id);
-    const userMenus = userMenusResult.data;
-    loginStore.userMenus = userMenus;
+      // 跳转到首页
+      router.push("/main");
+    };
 
-    // 跳转到首页
-    router.push("/main");
-  };
+    const phoneLogin = (phoneNum: string, phoneCode: string) => {
+      console.log(`手机号：${phoneNum}，验证码：${phoneCode}`);
+    };
 
-  const phoneLogin = (phoneNum: string, phoneCode: string) => {
-    console.log(`手机号：${phoneNum}，验证码：${phoneCode}`);
-  };
-
-  return {
-    ...toRefs(loginStore),
-    accountLogin,
-    phoneLogin
-  };
-});
+    return {
+      ...toRefs(loginStore),
+      accountLogin,
+      phoneLogin
+    };
+  },
+  {
+    persist: {
+      enabled: true,
+      strategies: [
+        {
+          storage: localStorage
+        }
+      ]
+    }
+  }
+);
