@@ -21,8 +21,10 @@ const router = createRouter({
   routes
 });
 
+//路由导航守卫
 router.beforeEach((to) => {
   if (to.path !== "/login") {
+    //查看是否保存token
     const token = localCache.getCache("token") ?? "";
     if (!token) {
       return "/login";
