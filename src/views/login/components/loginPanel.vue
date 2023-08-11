@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { User, Iphone } from "@element-plus/icons-vue";
+// import { User, Iphone } from "@element-plus/icons-vue";
 import LoginAccount from "./loginAccount.vue";
 import LoginPhone from "./loginPhone.vue";
 
@@ -32,7 +32,7 @@ const handleLoginClick = () => {
       <el-tab-pane name="account">
         <template #label>
           <span class="custom-tabs-label">
-            <el-icon><User /></el-icon>
+            <el-icon><i-ep-user /></el-icon>
             <span>账号登录</span>
           </span>
         </template>
@@ -41,7 +41,7 @@ const handleLoginClick = () => {
       <el-tab-pane name="phone">
         <template #label>
           <span class="custom-tabs-label">
-            <el-icon><Iphone /></el-icon>
+            <el-icon><i-ep-iphone /></el-icon>
             <span>手机登录</span>
           </span>
         </template>
