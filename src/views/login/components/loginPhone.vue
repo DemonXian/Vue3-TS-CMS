@@ -21,6 +21,10 @@ const loginAction = () => {
   });
 };
 
+const getPhoneCode = () => {
+  alert("该模块还在测试中，请联系管理员");
+};
+
 //向外暴露方法
 defineExpose({
   loginAction
@@ -35,7 +39,9 @@ defineExpose({
     <ElFormItem label="验证码" prop="code">
       <div class="verification-code">
         <ElInput v-model="phone.code"></ElInput>
-        <el-button class="get-code-btn" type="primary" size="default"> 获取验证码 </el-button>
+        <el-button class="get-code-btn" type="primary" size="default" @click="getPhoneCode()">
+          获取验证码
+        </el-button>
       </div>
     </ElFormItem>
   </ElForm>
