@@ -41,6 +41,7 @@ const changFold = (fold: boolean) => {
 
 .page-content {
   height: calc(100% - 48px);
+  background-color: #f1f2fa;
 }
 
 .el-header,

@@ -1,8 +1,8 @@
 import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig } from "vite";
-import Icons from "unplugin-icons/vite";
-import IconsResolver from "unplugin-icons/resolver";
+// import Icons from "unplugin-icons/vite";
+// import IconsResolver from "unplugin-icons/resolver";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
@@ -24,27 +24,27 @@ export default defineConfig({
 
         // Auto import icon components
         // 自动导入图标组件
-        IconsResolver({
-          prefix: "Icon"
-        })
+        // IconsResolver({
+          // prefix: "Icon"
+        // })
       ]
     }),
     Components({
       resolvers: [
         // Auto register icon components
         // 自动注册图标组件 <i-ep-user />
-        IconsResolver({
-          enabledCollections: ["ep"]
-        }),
+        // IconsResolver({
+        //   enabledCollections: ["ep"]
+        // }),
         // Auto register Element Plus components
         // 自动导入 Element Plus 组件
         ElementPlusResolver()
       ]
     }),
 
-    Icons({
-      autoInstall: true
-    })
+    // Icons({
+    //   autoInstall: true
+    // })
   ],
 
   resolve: {

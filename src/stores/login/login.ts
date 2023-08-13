@@ -8,7 +8,6 @@ import localCache from "@/utils/cache";
 import type { ILoginState } from "./type";
 import type { IAccount } from "@/service/login/type";
 import router from "@/router";
-import { generateRouteByUserMenus } from "@/utils/map-menus";
 
 export const useLoginStore = defineStore(
   "login",
@@ -44,9 +43,6 @@ export const useLoginStore = defineStore(
       const userMenusResult = await requestUserMenusByRoleId(userInfo.role.id);
       const userMenus = userMenusResult.data;
       loginStore.userMenus = userMenus;
-
-      //根据用户菜单动态生成路由
-      generateRouteByUserMenus(userMenus)
 
       // 跳转到首页
       router.push("/main");
