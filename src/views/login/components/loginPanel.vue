@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import LoginAccount from "./loginAccount.vue";
 import LoginPhone from "./loginPhone.vue";
+import { User, Iphone } from "@element-plus/icons-vue";
 
 const isRememberPassword = ref(true);
 

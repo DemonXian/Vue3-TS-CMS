@@ -34,7 +34,6 @@ export async function generateRouteByUserMenus(userMenus: any[]) {
   _recurseGetRoute(userMenus);
 
   for (const route of routes) {
-    console.log(route);
     router.addRoute("main", route);
   }
 }

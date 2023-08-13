@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import router from "@/router";
 import { useLoginStore } from "@/stores/login/login";
+import { generateRouteByUserMenus } from "@/utils/map-menus";
 const loginStore = useLoginStore();
+
+// 动态加载路由
+onMounted(() => {
+  generateRouteByUserMenus(loginStore.userMenus);
+});
 
 // 左侧菜单折叠标识
 const props = defineProps({
