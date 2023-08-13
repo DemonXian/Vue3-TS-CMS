@@ -68,11 +68,11 @@ class MLRequest {
         // console.log("这是全局响应拦截");
 
         // 关闭动画
-        this.loadingInstance.close();
+        this.loadingInstance?.close();
         return value.data;
       },
       (error) => {
-        this.loadingInstance.close();
+        this.loadingInstance?.close();
         return error;
       }
     );

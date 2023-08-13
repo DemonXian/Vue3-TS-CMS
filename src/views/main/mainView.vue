@@ -18,7 +18,7 @@ const changFold = (fold: boolean) => {
       <el-container class="page">
         <el-header class="page-header"><NavHeader @changFold="changFold" /></el-header>
         <el-container class="page-content">
-          <el-main>Main</el-main>
+          <RouterView />
         </el-container>
       </el-container>
     </el-container>

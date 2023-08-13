@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import router from "@/router";
 import { useLoginStore } from "@/stores/login/login";
 const loginStore = useLoginStore();
 
@@ -17,6 +18,11 @@ const getIconName = (iconName: string) => {
     return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
   }
   return "";
+};
+
+// 处理菜单点击事件
+const handMenuItemClick = (url: string) => {
+  router.push(url);
 };
 </script>
 
@@ -46,7 +52,7 @@ const getIconName = (iconName: string) => {
                 <span>{{ item.name }}</span>
               </template>
               <template v-for="subItem in item.children" :key="subItem.id">
-                <el-menu-item :index="subItem.id + ''">
+                <el-menu-item :index="subItem.id + ''" @click="handMenuItemClick(subItem.url)">
                   <template #title>
                     <el-icon v-if="typeof subItem.icon === 'string'">
                       <component :is="getIconName(subItem.icon)"></component>
@@ -59,7 +65,7 @@ const getIconName = (iconName: string) => {
           </template>
           <!-- 一级菜单 -->
           <template v-else-if="item.type === 2">
-            <el-menu-item :index="item.id + ''">
+            <el-menu-item :index="item.id + ''" @click="handMenuItemClick(item.url)">
               <template #title>
                 <el-icon v-if="typeof item.icon === 'string'">
                   <component :is="getIconName(item.icon)"></component>

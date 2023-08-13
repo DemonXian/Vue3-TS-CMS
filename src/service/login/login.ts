@@ -11,7 +11,8 @@ enum LoginAPI {
 export function accountLoginRequest(account: IAccount) {
   return mlRequest.post<IDataType<ILoginResult>>({
     url: LoginAPI.accountLogin,
-    data: account
+    data: account,
+    isShowLoading: false
   });
 }
 

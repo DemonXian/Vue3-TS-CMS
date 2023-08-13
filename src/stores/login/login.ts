@@ -8,6 +8,7 @@ import localCache from "@/utils/cache";
 import type { ILoginState } from "./type";
 import type { IAccount } from "@/service/login/type";
 import router from "@/router";
+import { generateRouteByUserMenus } from "@/utils/map-menus";
 
 export const useLoginStore = defineStore(
   "login",
@@ -19,6 +20,13 @@ export const useLoginStore = defineStore(
     });
 
     const accountLogin = async (account: IAccount) => {
+
+      const loadingInstance = ElLoading.service({
+        lock: true,
+        text: "正在加载中...",
+        background: "rgba(0,0,0,0.5)"
+      });
+
       // 实现登录逻辑
       const loginResult = await accountLoginRequest(account);
       const { id, token } = loginResult.data;
@@ -37,8 +45,13 @@ export const useLoginStore = defineStore(
       const userMenus = userMenusResult.data;
       loginStore.userMenus = userMenus;
 
+      //根据用户菜单动态生成路由
+      generateRouteByUserMenus(userMenus)
+
       // 跳转到首页
       router.push("/main");
+
+      loadingInstance.close()
     };
 
     const phoneLogin = (phoneNum: string, phoneCode: string) => {
