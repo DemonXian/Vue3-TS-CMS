@@ -1,9 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import MLForm from "@/base-ui/form";
+import { searchFormConfig } from "./config/search.config";
+</script>
 
 <template>
   <div class="user">
-    <h2>user</h2>
+    <div class="search">
+      <MLForm v-bind="searchFormConfig" />
+    </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="less"></style>

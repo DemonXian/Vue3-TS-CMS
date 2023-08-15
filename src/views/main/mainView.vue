@@ -17,9 +17,11 @@ const changFold = (fold: boolean) => {
       </el-aside>
       <el-container class="page">
         <el-header class="page-header"><NavHeader @changFold="changFold" /></el-header>
-        <el-container class="page-content">
-          <RouterView />
-        </el-container>
+        <el-main class="page-content">
+          <div class="content-info">
+            <RouterView />
+          </div>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -41,7 +43,10 @@ const changFold = (fold: boolean) => {
 
 .page-content {
   height: calc(100% - 48px);
-  background-color: #f1f2fa;
+  .content-info{
+    background-color: #fff;
+    border-radius: 5px;
+  }
 }
 
 .el-header,

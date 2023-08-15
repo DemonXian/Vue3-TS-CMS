@@ -3,7 +3,6 @@ import { SwitchButton, User, Setting } from "@element-plus/icons-vue";
 import { useLoginStore } from "@/stores/login/login";
 
 const loginStore = useLoginStore();
-
 </script>
 
 <template>
@@ -21,7 +20,7 @@ const loginStore = useLoginStore();
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item :icon="SwitchButton"> 退出登录 </el-dropdown-item>
-        <el-dropdown-item :icon="User"> 用户信息 </el-dropdown-item>
+        <el-dropdown-item :icon="User" divided> 用户信息 </el-dropdown-item>
         <el-dropdown-item :icon="Setting">系统管理</el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -30,6 +29,8 @@ const loginStore = useLoginStore();
 
 <style scoped lang="less">
 .el-dropdown {
+  cursor: pointer;
+
   :focus-visible {
     outline: 0;
   }
